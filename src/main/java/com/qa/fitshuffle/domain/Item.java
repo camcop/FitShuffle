@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "WardrobeItem")
-public class WardrobeItem {
+@Table(name = "Item")
+public class Item {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,8 @@ public class WardrobeItem {
 	@Column
 	private String type;
 
-//	@Column
-//	private String layer;
+	@Column
+	private String subtype;
 
 	@Column
 	private String brand;
@@ -34,15 +34,25 @@ public class WardrobeItem {
 	@Column
 	private String colour;
 
-	public WardrobeItem() {
+	public Item() {
 		super();
 	}
 
-	public WardrobeItem(Long id, @NotBlank String name, String type, String brand, String colour) {
+	public Item(Long id, String name, String type, String subtype,
+			String brand, String colour) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.type = type;
+		this.subtype = subtype;
+		this.brand = brand;
+		this.colour = colour;
+	}
+
+	public Item(String name, String type, String subtype, String brand, String colour) {
+		this.name = name;
+		this.type = type;
+		this.subtype = subtype;
 		this.brand = brand;
 		this.colour = colour;
 	}
@@ -71,6 +81,14 @@ public class WardrobeItem {
 		this.type = type;
 	}
 
+	public String getSubtype() {
+		return subtype;
+	}
+
+	public void setSubtype(String subtype) {
+		this.subtype = subtype;
+	}
+
 	public String getBrand() {
 		return brand;
 	}
@@ -88,6 +106,18 @@ public class WardrobeItem {
 	}
 
 	@Override
+	public String toString() {
+		return "Item{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", type='" + type + '\'' +
+				", subtype='" + subtype + '\'' +
+				", brand='" + brand + '\'' +
+				", colour='" + colour + '\'' +
+				'}';
+	}
+
+	@Override
 	public int hashCode() {
 		return Objects.hash(brand, colour, id, name, type);
 	}
@@ -100,7 +130,7 @@ public class WardrobeItem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		WardrobeItem other = (WardrobeItem) obj;
+		Item other = (Item) obj;
 		return Objects.equals(brand, other.brand) && Objects.equals(colour, other.colour)
 				&& Objects.equals(id, other.id) && Objects.equals(name, other.name) && Objects.equals(type, other.type);
 	}

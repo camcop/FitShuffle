@@ -14,7 +14,7 @@
 	<name>220201_FitShuffle</name>
 	<description>Random outfit generator shuffle project</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<testcontainers.version>1.16.2</testcontainers.version>
 	</properties>
 	<dependencies>
@@ -61,7 +61,12 @@
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>nl.jqno.equalsverifier</groupId>
+			<artifactId>equalsverifier</artifactId>
+			<version>3.9</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
